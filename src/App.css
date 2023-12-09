@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --light-color1: #FFFFFF;
+  --light-color2: #F8F5FB;
+  --light-color3: #EDE9F3;
+  --light-color4: #DED7E9;
+  --light-color5: #C2B8DB;
+  --light-color6: #A090BC;
+  --light-color7: #A27AB7;
+  --light-color8: #936DB3;
+  --dark-color1: #120A21;
+  --dark-color2: #1B0F30;
+  --dark-color3: #2C1952;
+  --dark-color4: #472681;
+  --dark-color5: #4E2D95;
+  --dark-color6: #5F3E99;
+  --dark-color7: #724C9D;
+  --dark-color8: #895AA9;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages-dark,
+.pages-light{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 88vh;
+  min-width: 100%;
+}
+
+.pages-light{
+  background-color: var(--light-color1);
+}
+.pages-dark{
+  background-color: var(--dark-color2);
+  color: var(--light-color1);
+}
+.pages-light form{
+  background-color: var(--light-color2);
+  box-shadow: 10px 10px 10px var(--light-color3);
+}
+.pages-dark form{
+  background-color: var(--dark-color3);
+  box-shadow: 10px 10px 10px var(--dark-color4);
+}
+.pages-light input{
+  border-color:transparent ;
+  background-color: transparent;
+  border-bottom-color: 5px solid var(--light-color3); 
+  color: var(--dark-color3);
+}
+.pages-dark input{
+  border-color:transparent ;
+  background-color: transparent;
+  border-bottom: 2px solid var(--dark-color4); 
+  color: var(--light-color3);
+}
+.pages-light input::placeholder{
+  color: var(--dark-color5);
+}
+.pages-dark input::placeholder{
+  color: var(--light-color5);
+}
+.pages-dark input:focus{
+  background-color: var(--dark-color3);
+  
+}
+.pages-light input:focus{
+  background-color: var(--light-color3); 
+}
+.pages-light form button{
+  background-color: var(--light-color4);
+}
+.pages-dark form button{
+  background-color: var(--dark-color4);
+}
+.pages-light #login-msg{
+  background-color: var(--light-color4);
+  color: var(--light-color8);
+  border: 1px solid var(--light-color8);
+}

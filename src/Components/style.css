@@ -1,0 +1,133 @@
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+#light-header {
+  background-color: #c1b7d6;
+}
+#dark-header {
+  background-color: #48307f;
+  color: white;
+}
+#setting {
+  cursor: pointer;
+}
+
+#logo {
+  max-width: 150px;
+}
+#wallpaper {
+  width: auto;
+  height: 80px;
+}
+
+#LoginPage {
+}
+#LoginPage form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+#LoginPage input {
+  padding: 10px;
+  font-size: 22px;
+}
+#LoginPage button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+#LoginPage #login-msg {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#LoginPage #error {
+  color: red;
+}
+#AdminPage {
+}
+#VotePage {
+}
+
+/* Spinner CSS */
+#three-dots,
+#three-dots::after,
+#three-dots::before {
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  border-radius: 50%;
+  content: "";
+}
+#three-dots {
+  position: relative;
+  margin: 50px;
+  animation: color-dot2 1s infinite;
+}
+#three-dots::after {
+  position: absolute;
+  transform: translate(-20px, 0px);
+  animation: color-dot3 1s infinite;
+}
+#three-dots::before {
+  position: absolute;
+  transform: translate(21px, 0);
+  animation: color-dot1 1s infinite;
+}
+
+@keyframes color-dot2 {
+  0% {
+    background-color: gray;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: grey;
+  }
+}
+
+@keyframes color-dot1 {
+  0% {
+    background-color: orange;
+  }
+  50% {
+    background-color: grey;
+  }
+  100% {
+    background-color: gray;
+  }
+}
+@keyframes color-dot3 {
+  0% {
+    background-color: grey;
+  }
+  50% {
+    background-color: gray;
+  }
+  100% {
+    background-color: orange;
+  }
+}
+
+@media (max-width: 500px) {
+  .Header {
+    padding: 1px 2px;
+  }
+}
