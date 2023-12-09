@@ -19,7 +19,7 @@ export default function Header({ setPageHolder }) {
   return (
     <div className="Header" id={theme ? "light-header" : "dark-header"}>
       <img src={theme ? lightLogo : darkLogo} alt="logo" id="logo" />
-      <img src={wallpaper} alt="wallpaper" id="wallpaper" />
+      <img src={wallpaper} alt="wallpaper" id="wallpaper" onClick={() => setPageHolder('Vote')}/>
       <div name="setting" id="setting">
         <div onClick={changeClicked}>
           <FaRegUserCircle /> {getUser()?.name} <FaSortDown />
