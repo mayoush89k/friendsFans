@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import axios from "axios";
 import "./LoginPage.css";
+import Spinner from "../Spinner/Spinner";
 
 export default function LoginPage({ user, setUser, setPageHolder }) {
   const form = [
@@ -43,7 +44,7 @@ export default function LoginPage({ user, setUser, setPageHolder }) {
         user.password === inputValues[1].value
       );
     });
-console.log(userMatch)
+    console.log(userMatch);
     if (userMatch) {
       // save the user in local storage and also in state to use it afterwords
       localStorage.setItem("user", JSON.stringify(userMatch));
@@ -74,7 +75,9 @@ console.log(userMatch)
               onChange={(e) =>
                 setInputValues(
                   inputValues.map((value, i) =>
-                    i == index ? { ...value, value: e.target.value  , error: false} : value
+                    i == index
+                      ? { ...value, value: e.target.value, error: false }
+                      : value
                   )
                 )
               }
@@ -86,9 +89,9 @@ console.log(userMatch)
       </form>
       {/* spinner timeout for login time */}
       {user.username && (
-        <div id="login-msg">
+        <div className="spinner">
           login successful
-          <section id="three-dots" className="items"></section>
+          <Spinner />
           {setTimeout(() => {
             setPageHolder("Vote");
           }, 2000)}

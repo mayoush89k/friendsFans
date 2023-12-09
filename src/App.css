@@ -20,6 +20,11 @@
   --dark-color6: #5f3e99;
   --dark-color7: #724c9d;
   --dark-color8: #895aa9;
+  --orange-color1: #c04d00;
+  --orange-color2: #eb6308;
+  --orange-color3: #f4802a;
+  --orange-color4: #dea738;
+  --orange-color5: #f9d667;
 }
 
 #root {
@@ -42,12 +47,12 @@
 }
 #light-header #mode,
 #dark-header #setting-container button,
-  #dark-header {
+#dark-header {
   background-color: var(--dark-color5);
   color: white;
 }
 
-#dark-header #setting-container{
+#dark-header #setting-container {
   background-color: var(--dark-color8);
   border: 2px dotted var(--dark-color7);
 }
@@ -107,19 +112,58 @@
   background-color: var(--light-color3);
 }
 .pages-light form button {
-  background-color: var(--light-color4);
+  background-color: var(--orange-color2);
 }
 .pages-dark form button {
-  background-color: var(--dark-color4);
+  background-color: var(--orange-color4);
 }
-.pages-light #login-msg {
+.pages-light .spinner {
   background-color: var(--light-color4);
   color: var(--light-color8);
   border: 1px solid var(--light-color8);
 }
 
-.pages-dark #login-msg {
+.pages-dark .spinner {
   background-color: var(--dark-color4);
   color: var(--dark-color8);
   border: 1px solid var(--dark-color8);
+}
+
+/* vote characters */
+.pages-light #characters-list .character {
+  background-color: var(--light-color1);
+  box-shadow: 10px 10px 10px var(--light-color8);
+}
+.pages-dark #characters-list .character {
+  box-shadow: 10px 10px 10px var(--dark-color8);
+  background-color: var(--dark-color1);
+}
+.pages-dark #characters-list .character:hover {
+  transition: 0.5s;
+  box-shadow: none;
+  background-color: var(--dark-color8);
+}
+.pages-light #characters-list .character:hover {
+  box-shadow: none;
+  transition: 0.5s;
+  background-color: var(--light-color8);
+}
+
+.pages-light #characters-list .character button {
+  background-color: var(--orange-color1);
+  color: var(--light-color1);
+  border: 2px solid var(--orange-color4);
+}
+.pages-dark #characters-list .character button {
+  background-color: var(--orange-color4);
+  color: var(--dark-color1);
+  border: 1px solid var(--orange-color1);
+}
+.pages-light #characters-list .character button:hover {
+  background-color: var(--orange-color4);
+  transition: 0.5s;
+}
+.pages-dark #characters-list .character button:hover{
+  background-color: var(--orange-color1);
+  transition: 0.5s;
 }

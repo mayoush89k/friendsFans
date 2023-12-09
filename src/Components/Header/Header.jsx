@@ -6,7 +6,7 @@ import { FaRegUserCircle, FaSortDown, FaRegLightbulb } from "react-icons/fa";
 import "./Header.css";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function Header({ user , setUser}) {
+export default function Header({ user }) {
   const { theme, changeTheme } = useTheme();
   const [clicked , setClicked] = useState(false)
 
@@ -28,7 +28,6 @@ export default function Header({ user , setUser}) {
         <div id="setting-container">
           {user.admin && <button>Admin</button>}
           <button onClick={() => {
-            setUser({})
             localStorage.removeItem("user")
             window.location.reload()
           }}>LogOut</button>
