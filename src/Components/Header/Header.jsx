@@ -5,14 +5,16 @@ import wallpaper from "../../assets/friendsWallpaper.jpg";
 import { FaRegUserCircle, FaSortDown, FaRegLightbulb } from "react-icons/fa";
 import "./Header.css";
 import { useTheme } from "../../context/ThemeContext";
+import { useUser } from "../../context/UserContext";
 
-export default function Header({ user }) {
+export default function Header({ setPageHolder }) {
   const { theme, changeTheme } = useTheme();
-  const [clicked , setClicked] = useState(false)
+  const { getUser, logOutUser } = useUser();
+  const [clicked, setClicked] = useState(false);
 
   const changeClicked = () => {
-    setClicked(prev => !prev)
-  }
+    setClicked((prev) => !prev);
+  };
 
   return (
     <div className="Header" id={theme ? "light-header" : "dark-header"}>
@@ -20,17 +22,37 @@ export default function Header({ user }) {
       <img src={wallpaper} alt="wallpaper" id="wallpaper" />
       <div name="setting" id="setting">
         <div onClick={changeClicked}>
-          <FaRegUserCircle /> {user.name} <FaSortDown />
+          <FaRegUserCircle /> {getUser()?.name} <FaSortDown />
         </div>
-        <button onClick={changeTheme} id="mode"><FaRegLightbulb /></button>
+        <button onClick={changeTheme} id="mode">
+          <FaRegLightbulb />
+        </button>
       </div>
       {clicked && (
         <div id="setting-container">
-          {user.admin && <button>Admin</button>}
-          <button onClick={() => {
-            localStorage.removeItem("user")
-            window.location.reload()
-          }}>LogOut</button>
+          {getUser()?.admin && (
+            <button
+              onClick={() => {
+                setPageHolder("Admin");
+                setTimeout(() => {
+                  setClicked(false);
+                }, 2000);
+              }}
+            >
+              Admin
+            </button>
+          )}
+          <button
+            onClick={() => {
+              logOutUser();
+              setPageHolder("Login");
+              setTimeout(() => {
+                setClicked(false);
+              }, 2000);
+            }}
+          >
+            LogOut
+          </button>
         </div>
       )}
     </div>

@@ -3,8 +3,9 @@ import { useTheme } from "../../context/ThemeContext";
 import axios from "axios";
 import "./LoginPage.css";
 import Spinner from "../Spinner/Spinner";
+import { useUser } from "../../context/UserContext";
 
-export default function LoginPage({ user, setUser, setPageHolder }) {
+export default function LoginPage({setPageHolder }) {
   const form = [
     {
       type: "text",
@@ -19,6 +20,7 @@ export default function LoginPage({ user, setUser, setPageHolder }) {
       error: false,
     },
   ];
+  const { updateUser, getUser} = useUser()
   const { theme } = useTheme();
   const [inputValues, setInputValues] = useState(form);
   const [usersList, setUsersList] = useState([]);
@@ -43,12 +45,10 @@ export default function LoginPage({ user, setUser, setPageHolder }) {
         user.username === inputValues[0].value &&
         user.password === inputValues[1].value
       );
-    });
-    console.log(userMatch);
+    });;
     if (userMatch) {
       // save the user in local storage and also in state to use it afterwords
-      localStorage.setItem("user", JSON.stringify(userMatch));
-      setUser(userMatch);
+      updateUser(userMatch);
     } else {
       user.username === inputValues[0].value
         ? setInputValues([inputValues[0], { ...inputValues[1], error: true }])
@@ -88,7 +88,7 @@ export default function LoginPage({ user, setUser, setPageHolder }) {
         <button type="submit">Login</button>
       </form>
       {/* spinner timeout for login time */}
-      {user.username && (
+      {getUser()?.username && (
         <div className="spinner">
           login successful
           <Spinner />

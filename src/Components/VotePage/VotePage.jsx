@@ -3,11 +3,14 @@ import { useTheme } from "../../context/ThemeContext";
 import "./VotePage.css";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
+import { useCharacter } from "../../context/CharactersContext";
+import { useUser } from "../../context/UserContext";
 
 export default function VotePage() {
+
+  const {user , getUser, updateUser} = useUser()
   const { theme } = useTheme();
-  const [characters, setCharacters] = useState([]);
-  const [currentVote, setCurrentVote] = useState(0);
+  const { characters , changeCharacters } = useCharacter();
   const [checking, setChecking] = useState(false);
   const usersUrl = "https://6571e97ed61ba6fcc013f0b6.mockapi.io/users";
   const charactersUrl =
@@ -21,24 +24,20 @@ export default function VotePage() {
     false,
   ]);
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-
+ 
   useEffect(() => {
     fetchFriendsCharacters();
-    console.log(characters)
-  }, [isVoted, user]);
+  }, [isVoted, updateUser]);
 
   const fetchFriendsCharacters = async () => {
     try {
       const data = await axios.get(charactersUrl);
-      setCharacters(data.data);
+      changeCharacters(data.data);
     } catch (error) {
       console.error(error);
     }
   };
   const fetchUpdateCharacter = async (character, key , currentVote) => {
-    // const currentVote = character.votes+1
-    // setCurrentVote(character.votes++);
     try {
       const data = await axios.put(charactersUrl + "/" + character.id, {
         ...character,
@@ -50,22 +49,20 @@ export default function VotePage() {
     }
   };
 
-  const fetchSubmitVote = async (user, result) => {
-    console.log("user: ", user);
+  const fetchSubmitVote = async (result) => {
     try {
-      const data = await axios.put(usersUrl + "/" + user.id, {
-        ...user,
+      const data = await axios.put(usersUrl + "/" + getUser().id, {
+        ...getUser(),
         voted: result,
       });
-      localStorage.setItem("user", JSON.stringify(data.data));
-      setUser(data.data);
+      updateUser(data.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   const submitVote = async () => {
-    await fetchSubmitVote(user, true);
+    await fetchSubmitVote(true);
   };
 
   const changeVote = (character) => {
@@ -84,9 +81,9 @@ export default function VotePage() {
     }, 2000);
   };
 
-  const handleChangeVote = (user , character) => {
+  const handleChangeVote = (character) => {
     setChecking(true)
-    fetchSubmitVote(user, false);
+    fetchSubmitVote(false);
     fetchUpdateCharacter(character, "votes" , character.votes-1)
     setTimeout(() => {
       setChecking(false)
@@ -102,7 +99,7 @@ export default function VotePage() {
             <h1>{character.name}</h1>
             <p>Votes: {character.votes}</p>
             {user.voted ? (
-              <button onClick={() => handleChangeVote(user, character)}>
+              <button onClick={() => handleChangeVote(character)}>
                 Change your vote
               </button>
             ) : isVoted[character.id -1 ] ? (

@@ -5,30 +5,29 @@ import LoginPage from "./Components/LoginPage/LoginPage";
 import VotePage from "./Components/VotePage/VotePage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import Header from "./Components/Header/Header";
+import Chart from "./Components/Chart/Chart";
+import { CharactersProvider } from "./context/CharactersContext";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   const [pageHolder, setPageHolder] = useState("Login");
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
-      ? JSON.parse(localStorage.getItem("user"))
-      : {}
-  );
 
   return (
     <div className="App">
       <ThemeProvider>
-        <Header user={user} />
-        {pageHolder == "Login" && (
-          <LoginPage
-            user={user}
-            setUser={setUser}
-            setPageHolder={setPageHolder}
-          />
-        )}
-        {pageHolder == "Vote" && (
-          <VotePage user={user} setUser={setUser} />
-        )}
-        {pageHolder == "Admin" && <AdminPage />}
+        <UserProvider>
+          <Header setPageHolder={setPageHolder} />
+          {pageHolder == "Login" && (
+            <LoginPage
+              setPageHolder={setPageHolder}
+            />
+          )}
+          <CharactersProvider>
+            {pageHolder == "Vote" && <VotePage />}
+            {pageHolder == "Chart" && <Chart />}
+            {pageHolder == "Admin" && <AdminPage />}
+          </CharactersProvider>
+        </UserProvider>
       </ThemeProvider>
     </div>
   );

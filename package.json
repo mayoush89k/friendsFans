@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/x-charts": "^6.18.3",
     "axios": "^1.6.2",
+    "bar-charts-react": "^1.0.5",
+    "chart.js": "^4.4.1",
+    "next": "^14.0.4",
     "react": "^18.2.0",
+    "react-bar-chart": "^0.1.2",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0"
   },
