@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 import axios from "axios";
-import "./style.css";
+import "./LoginPage.css";
 
 export default function LoginPage({ user, setUser, setPageHolder }) {
   const form = [
@@ -43,7 +43,7 @@ export default function LoginPage({ user, setUser, setPageHolder }) {
         user.password === inputValues[1].value
       );
     });
-
+console.log(userMatch)
     if (userMatch) {
       // save the user in local storage and also in state to use it afterwords
       localStorage.setItem("user", JSON.stringify(userMatch));

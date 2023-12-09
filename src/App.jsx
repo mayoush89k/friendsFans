@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import { ThemeProvider } from './context/ThemeContext'
-import LoginPage from './Components/LoginPage'
-import VotePage from './Components/VotePage'
-import AdminPage from './Components/AdminPage'
-import Header from './Components/Header'
+import LoginPage from './Components/LoginPage/LoginPage'
+import VotePage from './Components/VotePage/VotePage'
+import AdminPage from './Components/AdminPage/AdminPage'
+import Header from './Components/Header/Header'
 
 function App() {
   const [pageHolder , setPageHolder] = useState("Login")
-  const [user , setUser] = useState({})
+  const [user , setUser] = useState(JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : {});
 
   return (
     <div className='App'>
     <ThemeProvider>
-      <Header user={{name:"May Karam"}}/>
+      <Header user={user} setUser={setUser}/>
       {pageHolder == "Login" && <LoginPage user={user} setUser={setUser} setPageHolder={setPageHolder}/>}
       {pageHolder == "Vote" && <VotePage />}
       {pageHolder == "Admin" && <AdminPage />}

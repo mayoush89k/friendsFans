@@ -1,30 +1,3 @@
-.Header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
-}
-#light-header {
-  background-color: #c1b7d6;
-}
-#dark-header {
-  background-color: #48307f;
-  color: white;
-}
-#setting {
-  cursor: pointer;
-}
-
-#logo {
-  max-width: 150px;
-}
-#wallpaper {
-  width: auto;
-  height: 80px;
-}
-
 #LoginPage {
 }
 #LoginPage form {
@@ -59,10 +32,6 @@
 }
 #LoginPage #error {
   color: red;
-}
-#AdminPage {
-}
-#VotePage {
 }
 
 /* Spinner CSS */
@@ -123,11 +92,5 @@
   }
   100% {
     background-color: orange;
-  }
-}
-
-@media (max-width: 500px) {
-  .Header {
-    padding: 1px 2px;
   }
 }

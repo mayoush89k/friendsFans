@@ -1,6 +1,6 @@
 import React from 'react'
-import { useTheme } from '../context/ThemeContext'
-import './style.css'
+import { useTheme } from '../../context/ThemeContext'
+import './AdminPage.css'
 
 export default function AdminPage() {
   const {theme} = useTheme()

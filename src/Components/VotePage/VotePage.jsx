@@ -1,6 +1,6 @@
 import React from 'react'
-import { useTheme } from '../context/ThemeContext'
-import './style.css'
+import { useTheme } from '../../context/ThemeContext'
+import './VotePage.css'
 
 export default function VotePage() {
   const {theme} = useTheme()
